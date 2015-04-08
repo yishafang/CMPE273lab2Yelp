@@ -1,0 +1,111 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ServiceService WSDL service -->
+
+  <service name="Service" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://connection"/>
+      <parameter name="wsdlServiceElement" value="ServiceService"/>
+      <parameter name="schemaQualified" value="http://model,http://connection"/>
+      <parameter name="wsdlServicePort" value="Service"/>
+      <parameter name="className" value="connection.ServiceSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="Service"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="addE" qname="operNS:addE" xmlns:operNS="http://connection" returnQName="retNS:addEReturn" xmlns:retNS="http://connection" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:cId" xmlns:pns="http://connection" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:eName" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:description" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="createC" qname="operNS:createC" xmlns:operNS="http://connection" returnQName="retNS:createCReturn" xmlns:retNS="http://connection" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:name" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="signUp" qname="operNS:signUp" xmlns:operNS="http://connection" returnQName="retNS:signUpReturn" xmlns:retNS="http://connection" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:firstname" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:lastname" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:email" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:password" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="signIn" qname="operNS:signIn" xmlns:operNS="http://connection" returnQName="retNS:signInReturn" xmlns:retNS="http://connection" returnType="rtns:User" xmlns:rtns="http://model" soapAction="" >
+        <parameter qname="pns:email" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:password" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="deleteC" qname="operNS:deleteC" xmlns:operNS="http://connection" returnQName="retNS:deleteCReturn" xmlns:retNS="http://connection" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://connection" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="updateC" qname="operNS:updateC" xmlns:operNS="http://connection" returnQName="retNS:updateCReturn" xmlns:retNS="http://connection" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://connection" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:name" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="addReview" qname="operNS:addReview" xmlns:operNS="http://connection" returnQName="retNS:addReviewReturn" xmlns:retNS="http://connection" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:uId" xmlns:pns="http://connection" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:eId" xmlns:pns="http://connection" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:rate" xmlns:pns="http://connection" type="tns:float" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:review" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="fetchCategory" qname="operNS:fetchCategory" xmlns:operNS="http://connection" returnQName="retNS:fetchCategoryReturn" xmlns:retNS="http://connection" returnType="rtns:Category" xmlns:rtns="http://model" soapAction="" >
+        <parameter qname="pns:sql" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="fetchUser" qname="operNS:fetchUser" xmlns:operNS="http://connection" returnQName="retNS:fetchUserReturn" xmlns:retNS="http://connection" returnType="rtns:User" xmlns:rtns="http://model" soapAction="" >
+        <parameter qname="pns:sql" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="fetchElement" qname="operNS:fetchElement" xmlns:operNS="http://connection" returnQName="retNS:fetchElementReturn" xmlns:retNS="http://connection" returnType="rtns:Element" xmlns:rtns="http://model" soapAction="" >
+        <parameter qname="pns:sql" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="fetchFeedback" qname="operNS:fetchFeedback" xmlns:operNS="http://connection" returnQName="retNS:fetchFeedbackReturn" xmlns:retNS="http://connection" returnType="rtns:Feedback" xmlns:rtns="http://model" soapAction="" >
+        <parameter qname="pns:sql" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getElmtByUID" qname="operNS:getElmtByUID" xmlns:operNS="http://connection" returnQName="retNS:getElmtByUIDReturn" xmlns:retNS="http://connection" returnType="rtns:Element" xmlns:rtns="http://model" soapAction="" >
+        <parameter qname="pns:sql" xmlns:pns="http://connection" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="fetchUser getElmtByUID fetchElement signUp fetchCategory updateC addReview fetchFeedback createC deleteC signIn addE"/>
+
+      <typeMapping
+        xmlns:ns="http://model"
+        qname="ns:User"
+        type="java:model.User"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://model"
+        qname="ns:Feedback"
+        type="java:model.Feedback"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <arrayMapping
+        xmlns:ns="http://connection"
+        qname="ns:ArrayOf_tns1_Feedback"
+        type="java:model.Feedback[]"
+        innerType="cmp-ns:Feedback" xmlns:cmp-ns="http://model"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://model"
+        qname="ns:Category"
+        type="java:model.Category"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://model"
+        qname="ns:Element"
+        type="java:model.Element"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

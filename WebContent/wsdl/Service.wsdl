@@ -1,0 +1,803 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://connection" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://connection" xmlns:intf="http://connection" xmlns:tns1="http://model" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://connection" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://model"/>
+   <element name="addE">
+    <complexType>
+     <sequence>
+      <element name="cId" type="xsd:int"/>
+      <element name="eName" type="xsd:string"/>
+      <element name="description" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addEResponse">
+    <complexType>
+     <sequence>
+      <element name="addEReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="createC">
+    <complexType>
+     <sequence>
+      <element name="name" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="createCResponse">
+    <complexType>
+     <sequence>
+      <element name="createCReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="signUp">
+    <complexType>
+     <sequence>
+      <element name="firstname" type="xsd:string"/>
+      <element name="lastname" type="xsd:string"/>
+      <element name="email" type="xsd:string"/>
+      <element name="password" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="signUpResponse">
+    <complexType>
+     <sequence>
+      <element name="signUpReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="signIn">
+    <complexType>
+     <sequence>
+      <element name="email" type="xsd:string"/>
+      <element name="password" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="signInResponse">
+    <complexType>
+     <sequence>
+      <element name="signInReturn" type="tns1:User"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deleteC">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deleteCResponse">
+    <complexType>
+     <sequence>
+      <element name="deleteCReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="updateC">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+      <element name="name" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="updateCResponse">
+    <complexType>
+     <sequence>
+      <element name="updateCReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addReview">
+    <complexType>
+     <sequence>
+      <element name="uId" type="xsd:int"/>
+      <element name="eId" type="xsd:int"/>
+      <element name="rate" type="xsd:float"/>
+      <element name="review" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addReviewResponse">
+    <complexType>
+     <sequence>
+      <element name="addReviewReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="fetchCategory">
+    <complexType>
+     <sequence>
+      <element name="sql" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="fetchCategoryResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="fetchCategoryReturn" type="tns1:Category"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="fetchUser">
+    <complexType>
+     <sequence>
+      <element name="sql" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="fetchUserResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="fetchUserReturn" type="tns1:User"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="fetchElement">
+    <complexType>
+     <sequence>
+      <element name="sql" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="fetchElementResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="fetchElementReturn" type="tns1:Element"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_tns1_Feedback">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns1:Feedback"/>
+    </sequence>
+   </complexType>
+   <element name="fetchFeedback">
+    <complexType>
+     <sequence>
+      <element name="sql" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="fetchFeedbackResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="fetchFeedbackReturn" type="tns1:Feedback"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getElmtByUID">
+    <complexType>
+     <sequence>
+      <element name="sql" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getElmtByUIDResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getElmtByUIDReturn" type="tns1:Element"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://model" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://connection"/>
+   <complexType name="User">
+    <sequence>
+     <element name="FName" nillable="true" type="xsd:string"/>
+     <element name="LName" nillable="true" type="xsd:string"/>
+     <element name="email" nillable="true" type="xsd:string"/>
+     <element name="password" nillable="true" type="xsd:string"/>
+     <element name="time" nillable="true" type="xsd:string"/>
+     <element name="userId" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <complexType name="Category">
+    <sequence>
+     <element name="categoryId" type="xsd:int"/>
+     <element name="categoryName" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="Feedback">
+    <sequence>
+     <element name="EId" type="xsd:int"/>
+     <element name="FId" type="xsd:int"/>
+     <element name="UId" type="xsd:int"/>
+     <element name="rating" type="xsd:float"/>
+     <element name="review" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="Element">
+    <sequence>
+     <element name="CId" type="xsd:int"/>
+     <element name="EId" type="xsd:int"/>
+     <element name="EName" nillable="true" type="xsd:string"/>
+     <element name="description" nillable="true" type="xsd:string"/>
+     <element name="feedbacks" nillable="true" type="impl:ArrayOf_tns1_Feedback"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="addReviewRequest">
+
+      <wsdl:part element="impl:addReview" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addEResponse">
+
+      <wsdl:part element="impl:addEResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getElmtByUIDResponse">
+
+      <wsdl:part element="impl:getElmtByUIDResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="createCRequest">
+
+      <wsdl:part element="impl:createC" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addERequest">
+
+      <wsdl:part element="impl:addE" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="fetchElementRequest">
+
+      <wsdl:part element="impl:fetchElement" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="signInResponse">
+
+      <wsdl:part element="impl:signInResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="updateCRequest">
+
+      <wsdl:part element="impl:updateC" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="signUpRequest">
+
+      <wsdl:part element="impl:signUp" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="fetchFeedbackRequest">
+
+      <wsdl:part element="impl:fetchFeedback" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="fetchUserResponse">
+
+      <wsdl:part element="impl:fetchUserResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="fetchUserRequest">
+
+      <wsdl:part element="impl:fetchUser" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="signUpResponse">
+
+      <wsdl:part element="impl:signUpResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="updateCResponse">
+
+      <wsdl:part element="impl:updateCResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="fetchFeedbackResponse">
+
+      <wsdl:part element="impl:fetchFeedbackResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="signInRequest">
+
+      <wsdl:part element="impl:signIn" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteCRequest">
+
+      <wsdl:part element="impl:deleteC" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteCResponse">
+
+      <wsdl:part element="impl:deleteCResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="fetchCategoryRequest">
+
+      <wsdl:part element="impl:fetchCategory" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addReviewResponse">
+
+      <wsdl:part element="impl:addReviewResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getElmtByUIDRequest">
+
+      <wsdl:part element="impl:getElmtByUID" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="fetchElementResponse">
+
+      <wsdl:part element="impl:fetchElementResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="fetchCategoryResponse">
+
+      <wsdl:part element="impl:fetchCategoryResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="createCResponse">
+
+      <wsdl:part element="impl:createCResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Service">
+
+      <wsdl:operation name="addE">
+
+         <wsdl:input message="impl:addERequest" name="addERequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addEResponse" name="addEResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createC">
+
+         <wsdl:input message="impl:createCRequest" name="createCRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:createCResponse" name="createCResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="signUp">
+
+         <wsdl:input message="impl:signUpRequest" name="signUpRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:signUpResponse" name="signUpResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="signIn">
+
+         <wsdl:input message="impl:signInRequest" name="signInRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:signInResponse" name="signInResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteC">
+
+         <wsdl:input message="impl:deleteCRequest" name="deleteCRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:deleteCResponse" name="deleteCResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="updateC">
+
+         <wsdl:input message="impl:updateCRequest" name="updateCRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:updateCResponse" name="updateCResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addReview">
+
+         <wsdl:input message="impl:addReviewRequest" name="addReviewRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addReviewResponse" name="addReviewResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="fetchCategory">
+
+         <wsdl:input message="impl:fetchCategoryRequest" name="fetchCategoryRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:fetchCategoryResponse" name="fetchCategoryResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="fetchUser">
+
+         <wsdl:input message="impl:fetchUserRequest" name="fetchUserRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:fetchUserResponse" name="fetchUserResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="fetchElement">
+
+         <wsdl:input message="impl:fetchElementRequest" name="fetchElementRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:fetchElementResponse" name="fetchElementResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="fetchFeedback">
+
+         <wsdl:input message="impl:fetchFeedbackRequest" name="fetchFeedbackRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:fetchFeedbackResponse" name="fetchFeedbackResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getElmtByUID">
+
+         <wsdl:input message="impl:getElmtByUIDRequest" name="getElmtByUIDRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getElmtByUIDResponse" name="getElmtByUIDResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ServiceSoapBinding" type="impl:Service">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="addE">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addERequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addEResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createC">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="createCRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="createCResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="signUp">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="signUpRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="signUpResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="signIn">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="signInRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="signInResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteC">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="deleteCRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="deleteCResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="updateC">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="updateCRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="updateCResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addReview">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addReviewRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addReviewResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="fetchCategory">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="fetchCategoryRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="fetchCategoryResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="fetchUser">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="fetchUserRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="fetchUserResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="fetchElement">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="fetchElementRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="fetchElementResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="fetchFeedback">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="fetchFeedbackRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="fetchFeedbackResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getElmtByUID">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getElmtByUIDRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getElmtByUIDResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ServiceService">
+
+      <wsdl:port binding="impl:ServiceSoapBinding" name="Service">
+
+         <wsdlsoap:address location="http://localhost:8080/Lab2Yelp/services/Service"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
